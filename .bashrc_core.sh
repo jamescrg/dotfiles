@@ -32,9 +32,10 @@ alias py='python3'
 alias wo='workon'
 alias de='deactivate'
 
-# access to django scripts
+# django shortcuts
 alias pym='python3 manage.py'
 alias sv='python3 manage.py runserver 0.0.0.0:8000'
+alias to='touch ./config/wsgi.py'
 
 # edit cp
 alias cpv='cd /home/james/cp && vim'
