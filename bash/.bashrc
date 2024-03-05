@@ -201,6 +201,8 @@ alias rg="rg -g '!{**/migrations/*,**/.git/*}' --hidden --follow"
 
 export PATH="$PATH:/opt/nvim-linux64/bin"
 
-if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
-    exec tmux -2
-fi
+# if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
+#     exec tmux -2
+# fi
+ 
+source ~/.bashrc_local
