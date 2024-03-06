@@ -1,0 +1,15 @@
+
+tags*
+.ssh
+__init__.py
+*.pyc
+**/settings_local.py
+*.log
+**/logs/
+.flake8
+.coverage
+.coveragerc
+apps/lab
+gunicorn.conf.py
+gunicorn_cl.conf.py
+pyrightconfig.json

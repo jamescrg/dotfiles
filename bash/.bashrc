@@ -167,12 +167,7 @@ alias db='tmux rename-window psql && psql'
 alias to='touch ./config/wsgi.py'
 
 # git aliases
-alias ga='git add .'
-alias gb='git branch'
-alias gc='git commit -m'
-alias gac='git add . && git commit -m'
-alias gl='git log'
-alias gs='git status'
+alias g='git'
 
 # pytest show stdout
 alias pyt='clear && pytest -rP'
@@ -201,7 +196,7 @@ export FZF_DEFAULT_COMMAND='rg --files'
 
 export PATH="$PATH:/opt/nvim-linux64/bin"
 
- 
+
 source ~/.bashrc_local
 
 export NVM_DIR="$HOME/.nvm"

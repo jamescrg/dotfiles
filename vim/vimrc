@@ -210,6 +210,9 @@ set wildignore+=static/admin/**
 " hide netrw from buffer-toggle
 let g:netrw_altfile = 1
 
+" move viminfo to vim folder
+set viminfofile=~/.vim/viminfo
+
 "prevent signs from opening another gutter
 set signcolumn=number
 
@@ -270,7 +273,6 @@ nnoremap <C-m> <C-d>
 " window navigation
 nnoremap <tab> <C-w>w
 nnoremap <S-tab> <C-w>W
-" nnoremap <C-p> <C-i>
 nnoremap <leader>v :vsp<cr>
 
 " clear highlighted search text until next explicit search or n/N
@@ -278,24 +280,26 @@ nnoremap <leader>v :vsp<cr>
 nnoremap <silent> <leader><space> :noh<cr>
 
 " fzf searches
-nnoremap <leader>f :GFiles<cr>
+nnoremap <leader>f :Files<cr>
 nnoremap <nowait><leader>b :Buffers<cr>
 nnoremap <leader>r :Rg<cr>
 
+" quickfix window
+nnoremap <leader>c :copen 10<cr>
+nnoremap ]q :cnext<cr>zz
+
 " search for word under cursor, including first word
 nnoremap * *N
-
-" open quickfix window
-nnoremap <leader>c :copen 10<cr>
 
 " search for visually selected text
 vnoremap * y/\V<C-R>=escape(@",'/\')<CR><CR>N
 
 " shortcuts to edit configuation files
-nnoremap <leader>ev :e ~/.vim/vimrc<cr>
+nnoremap <leader>ev :e $MYVIMRC<cr>
 nnoremap <leader>so :so %<cr>
 nnoremap <leader>eb :e ~/.bashrc<cr>
 nnoremap <leader>et :e ~/.tmux.conf<cr>
+nnoremap <leader>ed :e ~/.dotfiles<cr>
 
 " shortcut to view log files
 nnoremap <leader>l :e /var/log/gunicorn<cr>

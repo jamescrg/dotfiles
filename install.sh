@@ -9,9 +9,9 @@ ln -sf $DOTFILES/bash/.bashrc $HOME/.bashrc
 ln -sf $DOTFILES/vim/vimrc $HOME/.vim/vimrc
 ln -sf $DOTFILES/vim/spell $HOME/.vim/spell
 
-# Neovim
-rm -rf $HOME/.config/nvim
-ln -s $DOTFILES/nvim $HOME/.config/nvim
-
 # Tmux
 ln -sf $DOTFILES/tmux/.tmux.conf $HOME/.tmux.conf
+
+# Git
+ln -sf $DOTFILES/git/gitconfig $HOME/.gitconfig
+ln -sf $DOTFILES/git/gitignore_global $HOME/.gitignore_global
