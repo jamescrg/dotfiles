@@ -195,14 +195,15 @@ export PATH="/home/james/.local/bin:$PATH"
 # source /home/james/.local/bin/virtualenvwrapper.sh
 
 # Setting ripgrep as the default source for fzf
+alias rg="rg -g '!{**/migrations/*,**/.git/*}' --hidden --follow"
 export FZF_DEFAULT_COMMAND='rg --files'
 
-alias rg="rg -g '!{**/migrations/*,**/.git/*}' --hidden --follow"
 
 export PATH="$PATH:/opt/nvim-linux64/bin"
 
-# if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
-#     exec tmux -2
-# fi
  
 source ~/.bashrc_local
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion

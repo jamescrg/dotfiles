@@ -364,4 +364,6 @@ endfunction
 
 nnoremap <F9> :call JumpToCSS()<CR>
 
+autocmd InsertEnter * set cursorline
+autocmd InsertLeave * set nocursorline
 
