@@ -118,6 +118,7 @@ fi
 
 
 # some aliases
+alias dots="cd ~/.dotfiles && vim ."
 
 # server management
 alias ss='sudo systemctl'
@@ -140,7 +141,7 @@ alias jo='cd && cd ~/jo && source ~/.venvs/jo/bin/activate'
 alias mp='cd && cd ~/mp && source ~/.venvs/mp/bin/activate'
 
 # quick launch tmux
-alias tmux="TERM=screen-256color-bce tmux"
+# alias tmux="TERM=screen-256color-bce tmux"
 alias t='tmux'
 
 # quick source bashrc

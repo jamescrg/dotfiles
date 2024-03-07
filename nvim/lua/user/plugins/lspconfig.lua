@@ -1,12 +1,13 @@
 
 return { 
-  "neovim/nvim-lspconfig",
+  'neovim/nvim-lspconfig',
   config = function()
 
     -- Lanuch langauge servers
     require'lspconfig'.pyright.setup{}
     require'lspconfig'.cssls.setup{}
     require'lspconfig'.html.setup{}
+    require'lspconfig'.lua_ls.setup{}
 
     -- Keymaps
     -- See `:help vim.diagnostic.*` for documentation on any 
