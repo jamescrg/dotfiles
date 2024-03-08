@@ -51,6 +51,7 @@ vim.keymap.set('n', 'ep', ':e ~/.config/nvim/lua/user/plugins<cr>')
 vim.keymap.set('n', 'eb', ':e ~/.bashrc<cr>')
 vim.keymap.set('n', 'so', ':so<cr>')
 
+-- fzf
 vim.keymap.set('n', '<leader>f', ':Files<cr>')
 vim.keymap.set('n', '<leader>b', ':Buffers<cr>')
 vim.keymap.set('n', '<leader>r', ':Rg<cr>')
@@ -69,6 +70,7 @@ require('lazy').setup({
     'tpope/vim-surround',
     'tpope/vim-repeat',
     'tpope/vim-sleuth',
+    'tpope/vim-fugitive',
     'farmergreg/vim-lastplace',
     'nelstrom/vim-visual-star-search',
     'pocco81/auto-save.nvim',
@@ -80,7 +82,6 @@ require('lazy').setup({
     'junegunn/fzf',
     'junegunn/fzf.vim',
     'kalekundert/vim-coiled-snake',
-    'mfussenegger/nvim-lint',
     "williamboman/mason.nvim",
     "williamboman/mason-lspconfig.nvim",
     { "folke/neodev.nvim", opts = {} },
@@ -100,21 +101,8 @@ require('lazy').setup({
 -- Colorscheme ------------------------------------------------------------------
 
 vim.g.seoul256_background = 254
-vim.g.airline_theme = 'everforest'
-vim.cmd('set background=dark')
-vim.cmd('colorscheme everforest')
+vim.g.airline_theme = 'zenburn'
+vim.cmd('colorscheme seoul256-light')
 
 require("mason").setup()
 require("mason-lspconfig").setup()
-
--- require('lint').linters_by_ft = {
---   markdown = {'vale'},
---   python = {'flake8'},
---   css = { 'stylelint' },
--- }
-
--- vim.api.nvim_create_autocmd({ 'BufWritePost', 'InsertLeave' }, {
---   callback = function()
---     require('lint').try_lint()
---   end,
--- })

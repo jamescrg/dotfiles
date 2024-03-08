@@ -1,8 +1,10 @@
 
+
 " use '*' to search to desired section
 " Options
 " Keymaps
 " Insertions
+
 
 call plug#begin('~/.vim/plugged')
 
@@ -27,7 +29,7 @@ Plug 'valloric/MatchTagAlways'                  " highlight matching html tags
 Plug 'alvan/vim-closetag'                       " automatically close html tags
 Plug 'AndrewRadev/splitjoin.vim'                " split single linees into multiple
 Plug 'voldikss/vim-floaterm'                    " floating terminal
-" Plug 'SirVer/ultisnips'                         " snippets
+Plug 'SirVer/ultisnips'                         " snippets
 " Plug 'LunarWatcher/auto-pairs'                " auto pairs
 Plug 'kalekundert/vim-coiled-snake'             " python folding
 
@@ -40,14 +42,9 @@ call plug#end()
 " seoul256 light
 "   Range:   252 (darkest) ~ 256 (lightest)
 "   Default: 253
-set background=light
 let g:seoul256_background = 254
 colorscheme seoul256-light
 let g:airline_theme='zenburn'
-let g:airline#extensions#whitespace#enabled = 0
-let g:airline_powerline_fonts = 1
-let g:airline#extensions#wordcount#enabled = 1
-let g:airline#extensions#wordcount#filetypes = ['markdown']
 
 " papercolor
 " set background=light
@@ -55,13 +52,19 @@ let g:airline#extensions#wordcount#filetypes = ['markdown']
 
 " everforest
 " set termguicolors
-" let &t_8f = '\<Esc>[38;2;%lu;%lu;%lum'
-" let &t_8b = '\<Esc>[48;2;%lu;%lu;%lum'
+" let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+" let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 " set background=dark
 " let g:everforest_background = 'soft'
 " let g:everforest_better_performance = 1
 " let g:everforest_disable_italic_comment = 1
 " colorscheme everforest
+
+let g:airline#extensions#whitespace#enabled = 0
+let g:airline_powerline_fonts = 1
+let g:airline#extensions#wordcount#enabled = 1
+let g:airline#extensions#wordcount#filetypes = ['markdown']
+
 
 " Options
 " -------------------------------------------
@@ -69,16 +72,23 @@ let g:airline#extensions#wordcount#filetypes = ['markdown']
 set nocompatible
 filetype plugin on
 
-" set statusline to gray
-autocmd VimEnter * hi StatusLine ctermfg=8 ctermbg=250 cterm=none
+" highlight current line in insert mode
+autocmd InsertEnter * set cursorline
+autocmd InsertLeave * set nocursorline
 
 " Floating Terminal
 let g:floaterm_height=0.8
 let g:floaterm_width=0.8
 let g:floaterm_borderchars="        "
 
+" Ultisnips
+let g:UltiSnipsExpandTrigger="<c-l>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+
 " Completor
 autocmd Filetype markdown let g:completor_auto_trigger = 0
+let g:completor_python_binary = '/usr/bin/python3'
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<cr>"
@@ -96,24 +106,19 @@ set noswapfile                          " no swap files
 set splitright                          " open splits on the right
 set splitbelow                          " open splits on bottom
 set foldmethod=indent                   " fold behavior
-set foldlevel=99
+set foldlevel=99                        " folds opened by default
 let g:auto_save = 1                     " autosave
-let g:auto_save_in_insert_mode = 0
+let g:auto_save_in_insert_mode = 0      " only autosave after leaving insert
 set expandtab                           " inserts spaces when tab key is pressed
 set tabstop=4                           " sets for spaces for tabs
 set softtabstop=4                       " number of spaces removed by backspace key
 set shiftwidth=4                        " sets number of spaces to insert/remove using indentation commands
-set autoindent
+set autoindent                          " autoindent
 set shiftround                          " use multiple of shiftwidth when indenting with '<' and '>'
 set backspace=indent,eol,start          " backspace
 set ttimeoutlen=50                      " elminiate delay in escaping out of fzf
 set undofile                            " persistent undo history
 set undodir=~/.vim/undodir
-set wildignore+=tags,.git/**
-set wildignore+=**/migrations/**
-set wildignore+=**/__pycache__/**
-set wildignore+=static/bootstrap-3.3.7/**,static/images/**
-set wildignore+=static/admin/**
 set viminfofile=~/.vim/viminfo          " move viminfo to vim folder
 set signcolumn=number                   " prevent signs from opening another gutter
 set number                              " always show line numbers
@@ -248,7 +253,3 @@ function! JumpToCSS()
 endfunction
 
 nnoremap <F9> :call JumpToCSS()<CR>
-
-autocmd InsertEnter * set cursorline
-autocmd InsertLeave * set nocursorline
-
