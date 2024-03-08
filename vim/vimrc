@@ -9,9 +9,12 @@ call plug#begin('~/.vim/plugged')
 Plug 'junegunn/seoul256.vim'                    " color schemes
 Plug 'NLKNguyen/papercolor-theme'
 Plug 'sainnhe/everforest'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'                         " fuzzy search
 Plug 'tpope/vim-vinegar'                        " file broser
+Plug 'tpope/vim-fugitive'                       " git integration
 Plug 'vim-scripts/vim-auto-save'                "  auto save
 Plug 'tpope/vim-commentary'                     " comment bindings
 Plug 'tpope/vim-surround'                       " change brackets, parents, quotes, html tags
@@ -37,9 +40,14 @@ call plug#end()
 " seoul256 light
 "   Range:   252 (darkest) ~ 256 (lightest)
 "   Default: 253
-let g:seoul256_background = 254
 set background=light
+let g:seoul256_background = 254
 colorscheme seoul256-light
+let g:airline_theme='zenburn'
+let g:airline#extensions#whitespace#enabled = 0
+let g:airline_powerline_fonts = 1
+let g:airline#extensions#wordcount#enabled = 1
+let g:airline#extensions#wordcount#filetypes = ['markdown']
 
 " papercolor
 " set background=light
