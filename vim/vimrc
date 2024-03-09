@@ -43,12 +43,10 @@ colorscheme seoul256-light
 " status line
 hi StatusLine ctermbg=2 ctermfg=253
 set statusline=
-set statusline+=%{StatuslineGit()}
 set statusline+=\ %f
 set statusline+=%=
-set statusline+=\ %{&fileencoding?&fileencoding:&encoding}
-set statusline+=\[%{&fileformat}\]
 set statusline+=\ %l:%c
+set statusline+=%{fugitive#statusline()}
 
 " popup menu
 hi Pmenu ctermbg=253 ctermfg=5
@@ -86,8 +84,10 @@ let g:validator_json_checkers = ['jsonlint']
 let g:validator_javascript_checkers = ['eslint']
 let g:validator_vim_checkers = ['vint']
 
+let g:auto_save = 1                     " autosave
+let g:auto_save_in_insert_mode = 0      " only autosave after leaving insert
 set laststatus=2                        " always show status line
-set cursorline
+set cursorline                          " always highlight cursor line
 set ignorecase                          " ignore case
 set smartcase                           " except when an upper case character is used
 set incsearch                           " start searching as it is typed
@@ -98,8 +98,6 @@ set splitright                          " open splits on the right
 set splitbelow                          " open splits on bottom
 set foldmethod=indent                   " fold behavior
 set foldlevel=99                        " folds opened by default
-let g:auto_save = 1                     " autosave
-let g:auto_save_in_insert_mode = 0      " only autosave after leaving insert
 set expandtab                           " inserts spaces when tab key is pressed
 set tabstop=4                           " sets for spaces for tabs
 set softtabstop=4                       " number of spaces removed by backspace key
@@ -109,11 +107,11 @@ set shiftround                          " use multiple of shiftwidth when indent
 set backspace=indent,eol,start          " backspace
 set ttimeoutlen=50                      " elminiate delay in escaping out of fzf
 set undofile                            " persistent undo history
-set undodir=~/.vim/undodir
+set undodir=~/.vim/undodir              " undo history file location
 set viminfofile=~/.vim/viminfo          " move viminfo to vim folder
 set signcolumn=number                   " prevent signs from opening another gutter
 set number                              " always show line numbers
-set relativenumber
+set relativenumber                      " use relative line numbers
 set nowrap                              " wrap lines
 set linebreak                           " break at whitespace not words
 set display=lastline                    " show partial lines at the bottom of the screen
@@ -217,12 +215,3 @@ function! JumpToCSS()
 endfunction
 
 nnoremap <leader>cs :call JumpToCSS()<CR>
-
-function! GitBranch()
-  return system("git rev-parse --abbrev-ref HEAD 2>/dev/null | tr -d '\n'")
-endfunction
-
-function! StatuslineGit()
-  let l:branchname = GitBranch()
-  return strlen(l:branchname) > 0?'  '.l:branchname.' ':''
-endfunction
