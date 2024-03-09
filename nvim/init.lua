@@ -6,6 +6,7 @@
 
 -- Options ------------------------------------------------------------------
 
+vim.opt.cursorline = true
 vim.opt.encoding = 'UTF-8'
 vim.opt.shiftwidth = 4
 vim.opt.tabstop = 4
@@ -56,42 +57,49 @@ vim.keymap.set('n', '<leader>f', ':Files<cr>')
 vim.keymap.set('n', '<leader>b', ':Buffers<cr>')
 vim.keymap.set('n', '<leader>r', ':Rg<cr>')
 
+
+
 -- Plugins ------------------------------------------------------------------
 
 require('user.lazy')
 require('lazy').setup({
-    {'junegunn/seoul256.vim',},
-    {'sainnhe/everforest',},
+    'junegunn/seoul256.vim',
+    'sainnhe/everforest',
     'vim-airline/vim-airline',
     'vim-airline/vim-airline-themes',
     'tpope/vim-vinegar',
     'tpope/vim-commentary',
-    'tpope/vim-eunuch',
     'tpope/vim-surround',
     'tpope/vim-repeat',
-    'tpope/vim-sleuth',
     'tpope/vim-fugitive',
     'farmergreg/vim-lastplace',
     'nelstrom/vim-visual-star-search',
     'pocco81/auto-save.nvim',
     'AndrewRadev/splitjoin.vim',
     'sickill/vim-pasta',
-    'NMAC427/guess-indent.nvim',
     'nvim-tree/nvim-web-devicons',
     'ryanoasis/vim-devicons',
     'junegunn/fzf',
     'junegunn/fzf.vim',
     'kalekundert/vim-coiled-snake',
-    "williamboman/mason.nvim",
-    "williamboman/mason-lspconfig.nvim",
-    { "folke/neodev.nvim", opts = {} },
+    'alvan/vim-closetag',
+    'L3MON4D3/LuaSnip',
+    'saadparwaiz1/cmp_luasnip',
+    'williamboman/mason.nvim',
+    'williamboman/mason-lspconfig.nvim',
     {'nvim-treesitter/nvim-treesitter', build = ':TSUpdate'},
-    { import = 'user.plugins.nvim-autopairs' },
+    {
+        'windwp/nvim-autopairs',
+        opts = {
+            event = 'InsertEnter',
+            config = true,
+        }
+    },
     { import = 'user.plugins.floaterm' },
     { import = 'user.plugins.lspconfig' },
     { import = 'user.plugins.cmp' },
 },
-{ 
+{
   install = {
     colorscheme = {'seoul256-light'}
   }
@@ -99,6 +107,7 @@ require('lazy').setup({
 
 
 -- Colorscheme ------------------------------------------------------------------
+
 
 vim.g.seoul256_background = 254
 vim.g.airline_theme = 'zenburn'

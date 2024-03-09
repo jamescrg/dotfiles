@@ -1,18 +1,14 @@
 
-
 " use '*' to search to desired section
 " Options
 " Keymaps
 " Insertions
-
 
 call plug#begin('~/.vim/plugged')
 
 Plug 'junegunn/seoul256.vim'                    " color schemes
 Plug 'NLKNguyen/papercolor-theme'
 Plug 'sainnhe/everforest'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'                         " fuzzy search
 Plug 'tpope/vim-vinegar'                        " file broser
@@ -25,18 +21,17 @@ Plug 'tpope/vim-abolish'                        " covert camel case to snake cas
 Plug 'ludovicchabant/vim-gutentags'             " auto update tags file
 Plug 'maralla/completor.vim'                    " better autocomplete, always on
 Plug 'maralla/validator.vim'                    " code validation
+Plug 'farmergreg/vim-lastplace'                 " return to last positon in file when opened
 Plug 'valloric/MatchTagAlways'                  " highlight matching html tags
 Plug 'alvan/vim-closetag'                       " automatically close html tags
 Plug 'AndrewRadev/splitjoin.vim'                " split single linees into multiple
-Plug 'voldikss/vim-floaterm'                    " floating terminal
 Plug 'SirVer/ultisnips'                         " snippets
-" Plug 'LunarWatcher/auto-pairs'                " auto pairs
 Plug 'kalekundert/vim-coiled-snake'             " python folding
 
 call plug#end()
 
 
-" Color
+" Appearance
 " -------------------------------------------
 
 " seoul256 light
@@ -44,50 +39,41 @@ call plug#end()
 "   Default: 253
 let g:seoul256_background = 254
 colorscheme seoul256-light
-let g:airline_theme='zenburn'
 
-" papercolor
-" set background=light
-" colorscheme PaperColor
+" status line
+hi StatusLine ctermbg=2 ctermfg=253
+set statusline=
+set statusline+=%{StatuslineGit()}
+set statusline+=\ %f
+set statusline+=%=
+set statusline+=\ %{&fileencoding?&fileencoding:&encoding}
+set statusline+=\[%{&fileformat}\]
+set statusline+=\ %l:%c
 
-" everforest
-" set termguicolors
-" let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
-" let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
-" set background=dark
-" let g:everforest_background = 'soft'
-" let g:everforest_better_performance = 1
-" let g:everforest_disable_italic_comment = 1
-" colorscheme everforest
-
-let g:airline#extensions#whitespace#enabled = 0
-let g:airline_powerline_fonts = 1
-let g:airline#extensions#wordcount#enabled = 1
-let g:airline#extensions#wordcount#filetypes = ['markdown']
-
+" popup menu
+hi Pmenu ctermbg=253 ctermfg=5
+hi PmenuSel ctermbg=5 ctermfg=253
 
 " Options
 " -------------------------------------------
 
-set nocompatible
 filetype plugin on
 
 " highlight current line in insert mode
-autocmd InsertEnter * set cursorline
-autocmd InsertLeave * set nocursorline
-
-" Floating Terminal
-let g:floaterm_height=0.8
-let g:floaterm_width=0.8
-let g:floaterm_borderchars="        "
+augroup cursor
+    autocmd InsertEnter * set cursorline!
+    autocmd InsertLeave * set cursorline!
+augroup end
 
 " Ultisnips
-let g:UltiSnipsExpandTrigger="<c-l>"
-let g:UltiSnipsJumpForwardTrigger="<c-b>"
-let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+let g:UltiSnipsExpandTrigger='<c-y>'
+let g:UltiSnipsJumpForwardTrigger='<c-y>'
+let g:UltiSnipsJumpBackwardTrigger='<c-z>'
 
 " Completor
-autocmd Filetype markdown let g:completor_auto_trigger = 0
+augroup markdown
+    autocmd Filetype markdown let g:completor_auto_trigger = 0
+augroup end
 let g:completor_python_binary = '/usr/bin/python3'
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
@@ -96,7 +82,12 @@ inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<cr>"
 " Validator
 let g:validator_python_checkers = ['flake8']
 let g:validator_css_checkers = ['csslint']
+let g:validator_json_checkers = ['jsonlint']
+let g:validator_javascript_checkers = ['eslint']
+let g:validator_vim_checkers = ['vint']
 
+set laststatus=2                        " always show status line
+set cursorline
 set ignorecase                          " ignore case
 set smartcase                           " except when an upper case character is used
 set incsearch                           " start searching as it is typed
@@ -128,27 +119,33 @@ set linebreak                           " break at whitespace not words
 set display=lastline                    " show partial lines at the bottom of the screen
 
 " enable resizing splits in tmux
-if has("mouse_sgr")
+if has('mouse_sgr')
     set ttymouse=sgr
 else
     set ttymouse=xterm2
 end
 
 " auto remove trailing whitespace
-autocmd BufWritePre * :%s/\s\+$//e
+augroup whitespace
+    autocmd BufWritePre * :%s/\s\+$//e
+augroup end
 
 " tabs for css and html
-autocmd BufRead,BufNewFile *.html,*.css setlocal tabstop=2 shiftwidth=2 softtabstop=2
+augroup css
+    autocmd BufRead,BufNewFile *.html,*.css setlocal tabstop=2 shiftwidth=2 softtabstop=2
+augroup end
 
 " html mode
-autocmd BufRead,BufNewFile *.html setlocal filetype=htmldjango foldmethod=indent
+augroup html
+    autocmd BufRead,BufNewFile *.html setlocal filetype=htmldjango foldmethod=indent
+augroup end
 
 
 " Keymaps
 " -------------------------------------------
 
 " leader
-let mapleader = " "
+let mapleader = ' '
 
 " escaping
 inoremap jj <esc>
@@ -159,9 +156,6 @@ nnoremap <S-k> :bd<cr>
 
 " exit vim
 nnoremap <C-d> :q!<cr>
-
-" pg up/down
-nnoremap <C-m> <C-d>
 
 " window navigation
 nnoremap <tab> <C-w>w
@@ -193,6 +187,7 @@ nnoremap <leader>so :so %<cr>
 nnoremap <leader>eb :e ~/.bashrc<cr>
 nnoremap <leader>et :e ~/.tmux.conf<cr>
 nnoremap <leader>ed :e ~/.dotfiles<cr>
+nnoremap <leader>es :e ~/.dotfiles/vim/UltiSnips<cr>
 
 " shortcut to view log files
 nnoremap <leader>l :e /var/log/gunicorn<cr>
@@ -203,45 +198,14 @@ command W :execute ':silent w !sudo tee % > /dev/null' | :edit!
 " insert a breakpoint
 nnoremap <leader>p obreakpoint()<Esc>
 
-" Float term toggle
-nnoremap <leader>t :FloatermToggle<cr>
-
-
-" Insertion
-" -------------------------------------------
-
 " auto close pairs when on separate lines
 inoremap {<cr> {<cr>}<esc>O
 inoremap [<cr> [<cr>]<esc>O
 inoremap (<cr> (<cr>)<esc>O
 
-" insert text
-func Eatchar(pat)
-    let c = nr2char(getchar(0))
-    return (c =~ a:pat) ? '' : c
-endfunc
-
-" print
-iab pr print()<left><c-r>=Eatchar('\s')<cr>
-
-" pprint
-iab ppr from pprint import pprint<cr>pprint()<left><c-r>=Eatchar('\s')<cr>
-
-" javascript console log
-iab cl console.log();<left><left><c-r>=Eatchar('\s')<cr>
-"
-" dump django objects to browser
-iab dd import config.helpers as helpers<cr>return helpers.dump()<left><c-r>=Eatchar('\s')<cr>
-
-" python dosctring
-iab pycom """<cr><cr>Args:<cr>    id (int):<cr><bs><cr>Returns:<cr><cr>Notes:<cr><cr>"""<up><up><up><up><up><up><up><up><up><c-r>=Eatchar('\s')<cr>
-
-" css section
-iab csscom /*------------------------------------------------<cr><cr>------------------------------------------------*/<up>
-
 function! JumpToCSS()
-  let id_pos = searchpos("id", "nb", line('.'))[1]
-  let class_pos = searchpos("class", "nb", line('.'))[1]
+  let id_pos = searchpos('id', 'nb', line('.'))[1]
+  let class_pos = searchpos('class', 'nb', line('.'))[1]
 
   if class_pos > 0 || id_pos > 0
     if class_pos < id_pos
@@ -252,4 +216,13 @@ function! JumpToCSS()
   endif
 endfunction
 
-nnoremap <F9> :call JumpToCSS()<CR>
+nnoremap <leader>cs :call JumpToCSS()<CR>
+
+function! GitBranch()
+  return system("git rev-parse --abbrev-ref HEAD 2>/dev/null | tr -d '\n'")
+endfunction
+
+function! StatuslineGit()
+  let l:branchname = GitBranch()
+  return strlen(l:branchname) > 0?'  '.l:branchname.' ':''
+endfunction

@@ -9,13 +9,22 @@ return {
     'onsails/lspkind-nvim',
   },
   config = function()
-      local has_words_before = function()
+    local has_words_before = function()
         unpack = unpack or table.unpack
         local line, col = unpack(vim.api.nvim_win_get_cursor(0))
         return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match('%s') == nil
     end
+
     local cmp = require('cmp')
+    local luasnip = require('luasnip')
     local lspkind = require('lspkind')
+
+    require("luasnip.loaders.from_snipmate")
+
+    vim.keymap.set({"i"}, "<C-K>", function() luasnip.expand() end, {silent = true})
+    vim.keymap.set({"i", "s"}, "<C-L>", function() luasnip.jump( 1) end, {silent = true})
+    vim.keymap.set({"i", "s"}, "<C-J>", function() luasnip.jump(-1) end, {silent = true})
+
     cmp.setup({
         window = {
           -- completion = cmp.config.window.bordered(),
