@@ -101,8 +101,8 @@ alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo
 # ~/.bash_aliases, instead of adding them here directly.
 # See /usr/share/doc/bash-doc/examples in the bash-doc package.
 
-if [ -f ~/.bash_aliases ]; then
-    . ~/.bash_aliases
+if [ -f ./.bash_aliases ]; then
+    . ./.bash_aliases
 fi
 
 # enable programmable completion features (you don't need to enable
@@ -116,66 +116,6 @@ if ! shopt -oq posix; then
   fi
 fi
 
-
-# some aliases
-alias dots="cd ~/.dotfiles && vim ."
-
-# server management
-alias ss='sudo systemctl'
-alias ssr='sudo systemctl restart'
-alias ng='cd /etc/nginx && vim'
-
-
-# quick access to notes
-alias w='cd ~/w/notes && vim notes.ol.md'
-alias bk='cd ~/w/bk && vim'
-
-# minimal vim setup
-alias minvim="vim -u ~/.vim/essential.vim"
-
-# quick access to work on projects
-alias cla='cd && cd ~/cla && source ~/.venvs/cla/bin/activate'
-alias chf='cd && cd ~/chf && source ~/.venvs/chf/bin/activate'
-alias mh='cd && cd ~/mh && source ~/.venvs/mh/bin/activate'
-alias jo='cd && cd ~/jo && source ~/.venvs/jo/bin/activate'
-alias mp='cd && cd ~/mp && source ~/.venvs/mp/bin/activate'
-
-# quick launch tmux
-# alias tmux="TERM=screen-256color-bce tmux"
-alias t='tmux'
-
-# quick source bashrc
-alias so='source ~/.bashrc'
-
-# run python
-alias py='python3'
-
-# change into python virtualenvs
-alias wk='workon'
-alias de='deactivate'
-
-# deploy a site
-alias deploy='ssh james@minhome.app python3 deploy.py'
-
-# refresh local data
-alias cla_refresh='cd ~/.backups && python3 import.py'
-
-# django shortcuts
-alias pym='python3 manage.py'
-alias sv='python3 manage.py runserver 0.0.0.0:8000 && tmux rename-window runserver'
-alias gun='gunicorn --config ./gunicorn_cl.conf.py config.wsgi'
-alias db='tmux rename-window psql && psql'
-alias to='touch ./config/wsgi.py'
-
-# git aliases
-alias g='git'
-
-# pytest show stdout
-alias pyt='clear && pytest -rP'
-
-# run main
-alias main='clear && python3 main.py'
-
 ## .bin directory on path
 export PATH="~/.bin:$PATH"
 
@@ -184,22 +124,14 @@ export PATH="~/.bin:$PATH"
 export PATH="/home/james/.local/bin:$PATH"
 # export PYTHONPATH="/home/james/.local/bin/virtualenv:$PATH"
 
-## virtualenvwrapper
-# export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
-# export WORKON_HOME=$HOME/.virtualenvs
-# export PROJECT_HOME=$HOME/pyp
-# source /home/james/.local/bin/virtualenvwrapper.sh
-
 # Setting ripgrep as the default source for fzf
 alias rg="rg -g '!{**/migrations/*,**/.git/*}' --hidden --follow"
 export FZF_DEFAULT_COMMAND='rg --files'
 
-
 export PATH="$PATH:/opt/nvim-linux64/bin"
-
-
-source ~/.bashrc_local
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+source ~/.bashrc_local

@@ -45,8 +45,9 @@ hi StatusLine ctermbg=2 ctermfg=253
 set statusline=
 set statusline+=\ %f
 set statusline+=%=
-set statusline+=\ %l:%c
 set statusline+=%{fugitive#statusline()}
+set statusline+=%=
+set statusline+=\ %l:%c
 
 " popup menu
 hi Pmenu ctermbg=253 ctermfg=5
@@ -115,6 +116,7 @@ set relativenumber                      " use relative line numbers
 set nowrap                              " wrap lines
 set linebreak                           " break at whitespace not words
 set display=lastline                    " show partial lines at the bottom of the screen
+set scrolloff=5                         " keep at least 5 lines visible above/below cursor
 
 " enable resizing splits in tmux
 if has('mouse_sgr')
@@ -149,16 +151,17 @@ let mapleader = ' '
 inoremap jj <esc>
 inoremap jk <esc>
 
-" kill buffer
-nnoremap <S-k> :bd<cr>
-
 " exit vim
-nnoremap <C-d> :q!<cr>
+nnoremap Q :q!<cr>
+
+" line navigation
+nnoremap H ^
+nnoremap L $
 
 " window navigation
+nnoremap <leader>v :vsp<cr>
 nnoremap <tab> <C-w>w
 nnoremap <S-tab> <C-w>W
-nnoremap <leader>v :vsp<cr>
 
 " clear highlighted search text until next explicit search or n/N
 " <silent> - so as to not print :noh on last line when invoked
@@ -168,6 +171,7 @@ nnoremap <silent> <leader><space> :noh<cr>
 nnoremap <leader>f :Files<cr>
 nnoremap <nowait><leader>b :Buffers<cr>
 nnoremap <leader>r :Rg<cr>
+nnoremap <leader>t :Tags<cr>
 
 " quickfix window
 nnoremap <leader>c :copen 10<cr>
@@ -175,6 +179,8 @@ nnoremap ]q :cnext<cr>zz
 
 " search for word under cursor, including first word
 nnoremap * *N
+nnoremap n nzz
+nnoremap N Nzz
 
 " search for visually selected text
 vnoremap * y/\V<C-R>=escape(@",'/\')<CR><CR>N
@@ -192,9 +198,6 @@ nnoremap <leader>l :e /var/log/gunicorn<cr>
 
 " save as root
 command W :execute ':silent w !sudo tee % > /dev/null' | :edit!
-
-" insert a breakpoint
-nnoremap <leader>p obreakpoint()<Esc>
 
 " auto close pairs when on separate lines
 inoremap {<cr> {<cr>}<esc>O
@@ -215,3 +218,4 @@ function! JumpToCSS()
 endfunction
 
 nnoremap <leader>cs :call JumpToCSS()<CR>
+
