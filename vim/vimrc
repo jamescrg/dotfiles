@@ -23,7 +23,7 @@ Plug 'maralla/completor.vim'                    " better autocomplete, always on
 Plug 'maralla/validator.vim'                    " code validation
 Plug 'farmergreg/vim-lastplace'                 " return to last positon in file when opened
 Plug 'valloric/MatchTagAlways'                  " highlight matching html tags
-Plug 'alvan/vim-closetag'                       " automatically close html tags
+" Plug 'alvan/vim-closetag'                       " automatically close html tags
 Plug 'AndrewRadev/splitjoin.vim'                " split single linees into multiple
 Plug 'SirVer/ultisnips'                         " snippets
 Plug 'kalekundert/vim-coiled-snake'             " python folding
@@ -53,10 +53,20 @@ set statusline+=\ %l:%c
 hi Pmenu ctermbg=253 ctermfg=5
 hi PmenuSel ctermbg=5 ctermfg=253
 
+
 " Options
 " -------------------------------------------
 
 filetype plugin on
+
+" paste into vim under tmux without a cascading
+" series of indentations
+if &term =~ "screen"
+    let &t_BE = "\e[?2004h"
+    let &t_BD = "\e[?2004l"
+    exec "set t_PS=\e[200~"
+    exec "set t_PE=\e[201~"
+endif
 
 " highlight current line in insert mode
 augroup cursor
@@ -152,11 +162,10 @@ inoremap jj <esc>
 inoremap jk <esc>
 
 " exit vim
-nnoremap Q :q!<cr>
+nnoremap <C-d> :q!<cr>
 
-" line navigation
-nnoremap H ^
-nnoremap L $
+" close buffer
+nnoremap <S-k> :bd<cr>
 
 " window navigation
 nnoremap <leader>v :vsp<cr>
@@ -179,6 +188,8 @@ nnoremap ]q :cnext<cr>zz
 
 " search for word under cursor, including first word
 nnoremap * *N
+
+" center search results as they come into focus
 nnoremap n nzz
 nnoremap N Nzz
 
@@ -203,19 +214,3 @@ command W :execute ':silent w !sudo tee % > /dev/null' | :edit!
 inoremap {<cr> {<cr>}<esc>O
 inoremap [<cr> [<cr>]<esc>O
 inoremap (<cr> (<cr>)<esc>O
-
-function! JumpToCSS()
-  let id_pos = searchpos('id', 'nb', line('.'))[1]
-  let class_pos = searchpos('class', 'nb', line('.'))[1]
-
-  if class_pos > 0 || id_pos > 0
-    if class_pos < id_pos
-      execute ":vim '#".expand('<cword>')."' **/*.css"
-    elseif class_pos > id_pos
-      execute ":vim '.".expand('<cword>')."' **/*.css"
-    endif
-  endif
-endfunction
-
-nnoremap <leader>cs :call JumpToCSS()<CR>
-
