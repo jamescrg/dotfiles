@@ -150,6 +150,13 @@ augroup html
     autocmd BufRead,BufNewFile *.html setlocal filetype=htmldjango foldmethod=indent
 augroup end
 
+" exclude various files from vimgrep scope
+set wildignore+=tags,.git/**
+set wildignore+=**/migrations/**
+set wildignore+=**/__pycache__/**
+set wildignore+=static/bootstrap-3.3.7/**,static/images/**
+set wildignore+=static/admin/**
+
 
 " Keymaps
 " -------------------------------------------
@@ -182,6 +189,9 @@ nnoremap <nowait><leader>b :Buffers<cr>
 nnoremap <leader>r :Rg<cr>
 nnoremap <leader>t :Tags<cr>
 
+" vimgrep I like better than FZF ripgrep
+nnoremap <C-f> :vimgrep '' **/*<left><left><left><left><left><left>
+
 " quickfix window
 nnoremap <leader>c :copen 10<cr>
 nnoremap ]q :cnext<cr>zz
@@ -203,6 +213,7 @@ nnoremap <leader>eb :e ~/.bashrc<cr>
 nnoremap <leader>et :e ~/.tmux.conf<cr>
 nnoremap <leader>ed :e ~/.dotfiles<cr>
 nnoremap <leader>es :e ~/.dotfiles/vim/UltiSnips<cr>
+nnoremap <leader>eg :e ~/.dotfiles/git/gitconfig<cr>
 
 " shortcut to view log files
 nnoremap <leader>l :e /var/log/gunicorn<cr>
@@ -214,3 +225,8 @@ command W :execute ':silent w !sudo tee % > /dev/null' | :edit!
 inoremap {<cr> {<cr>}<esc>O
 inoremap [<cr> [<cr>]<esc>O
 inoremap (<cr> (<cr>)<esc>O
+
+" insert a breakpoint
+nnoremap <leader>p obreakpoint();<esc>
+nnoremap <leader>P Obreakpoint();<esc>
+

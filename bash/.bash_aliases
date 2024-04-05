@@ -40,6 +40,11 @@ alias to='touch ./config/wsgi.py'
 
 # git aliases
 alias g='git'
+alias gs='git status'
+alias gb='git branch'
+alias gc='git commit'
+alias gch='git checkout'
+alias gl='git log'
 
 # pytest show stdout
 alias pyt='clear && pytest -rP'
