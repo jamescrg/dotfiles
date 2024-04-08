@@ -23,7 +23,6 @@ Plug 'maralla/completor.vim'                    " better autocomplete, always on
 Plug 'maralla/validator.vim'                    " code validation
 Plug 'farmergreg/vim-lastplace'                 " return to last positon in file when opened
 Plug 'valloric/MatchTagAlways'                  " highlight matching html tags
-" Plug 'alvan/vim-closetag'                       " automatically close html tags
 Plug 'AndrewRadev/splitjoin.vim'                " split single linees into multiple
 Plug 'SirVer/ultisnips'                         " snippets
 Plug 'kalekundert/vim-coiled-snake'             " python folding
@@ -39,6 +38,14 @@ call plug#end()
 "   Default: 253
 let g:seoul256_background = 254
 colorscheme seoul256-light
+
+" everforest
+" let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+" let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+" set termguicolors
+" let g:everforest_background = 'hard'
+" set background=dark
+" colorscheme everforest
 
 " status line
 hi StatusLine ctermbg=2 ctermfg=253
@@ -108,7 +115,7 @@ set noswapfile                          " no swap files
 set splitright                          " open splits on the right
 set splitbelow                          " open splits on bottom
 set foldmethod=indent                   " fold behavior
-set foldlevel=99                        " folds opened by default
+set foldlevel=99                        " folds closed by default
 set expandtab                           " inserts spaces when tab key is pressed
 set tabstop=4                           " sets for spaces for tabs
 set softtabstop=4                       " number of spaces removed by backspace key
@@ -181,7 +188,7 @@ nnoremap <S-tab> <C-w>W
 
 " clear highlighted search text until next explicit search or n/N
 " <silent> - so as to not print :noh on last line when invoked
-nnoremap <silent> <leader><space> :noh<cr>
+nnoremap <silent> <leader>h :noh<cr>
 
 " fzf searches
 nnoremap <leader>f :Files<cr>
@@ -230,3 +237,17 @@ inoremap (<cr> (<cr>)<esc>O
 nnoremap <leader>p obreakpoint();<esc>
 nnoremap <leader>P Obreakpoint();<esc>
 
+" insert text
+func Eatchar(pat)
+    let c = nr2char(getchar(0))
+    return (c =~ a:pat) ? '' : c
+endfunc
+
+" print
+iab pr print()<left><c-r>=Eatchar('\s')<cr>
+
+" pprint
+iab ppr from pprint import pprint<cr>pprint()<left><c-r>=Eatchar('\s')<cr>
+
+" dump django objects to browser
+iab dd import config.helpers as helpers<cr>return helpers.dump()<left><c-r>=Eatchar('\s')<cr>

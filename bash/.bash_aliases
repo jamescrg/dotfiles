@@ -15,6 +15,7 @@ alias bk='cd ~/w/bk && vim'
 # quick access to work on projects
 alias cla='cd && cd ~/cla && source ~/.venvs/cla/bin/activate'
 alias chf='cd && cd ~/chf && source ~/.venvs/chf/bin/activate'
+alias chf2='cd && cd ~/chf2 && source ~/.venvs/chf/bin/activate'
 alias mh='cd && cd ~/mh && source ~/.venvs/mh/bin/activate'
 alias jo='cd && cd ~/jo && source ~/.venvs/jo/bin/activate'
 alias mp='cd && cd ~/mp && source ~/.venvs/mp/bin/activate'
@@ -40,6 +41,7 @@ alias to='touch ./config/wsgi.py'
 
 # git aliases
 alias g='git'
+alias ga='git add'
 alias gs='git status'
 alias gb='git branch'
 alias gc='git commit'
