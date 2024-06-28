@@ -13,11 +13,9 @@ alias w='cd ~/w/notes && vim notes.ol.md'
 alias bk='cd ~/w/bk && vim'
 
 # quick access to work on projects
-alias cla='cd && cd ~/cla && source ~/.venvs/cla/bin/activate'
+alias law='cd && cd ~/lawadmin && source ~/.venvs/lawadmin/bin/activate'
 alias chf='cd && cd ~/chf && source ~/.venvs/chf/bin/activate'
-alias chf2='cd && cd ~/chf2 && source ~/.venvs/chf/bin/activate'
 alias mh='cd && cd ~/mh && source ~/.venvs/mh/bin/activate'
-alias jo='cd && cd ~/jo && source ~/.venvs/jo/bin/activate'
 alias mp='cd && cd ~/mp && source ~/.venvs/mp/bin/activate'
 
 # quick launch tmux
