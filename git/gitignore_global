@@ -1,7 +1,6 @@
 
 tags*
 .ssh
-__init__.py
 *.pyc
 **/settings_local.py
 *.log

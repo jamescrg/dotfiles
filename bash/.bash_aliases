@@ -14,11 +14,12 @@ alias bk='cd ~/w/bk && vim'
 
 # quick access to work on projects
 alias cla='cd && cd ~/cla && source ~/.venvs/cla/bin/activate'
+alias old='cd && cd ~/cla-archive && source ~/.venvs/cla-archive/bin/activate'
 alias chf='cd && cd ~/chf && source ~/.venvs/chf/bin/activate'
-alias chf2='cd && cd ~/chf2 && source ~/.venvs/chf/bin/activate'
 alias mh='cd && cd ~/mh && source ~/.venvs/mh/bin/activate'
 alias jo='cd && cd ~/jo && source ~/.venvs/jo/bin/activate'
 alias mp='cd && cd ~/mp && source ~/.venvs/mp/bin/activate'
+alias mp='cd && pyp ~/mp && source ~/.venvs/pyp/bin/activate'
 
 # quick launch tmux
 # alias tmux="TERM=screen-256color-bce tmux"
