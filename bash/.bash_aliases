@@ -22,6 +22,9 @@ alias mp='cd && cd ~/mp && source ~/.venvs/mp/bin/activate'
 alias act='source ./venv/bin/activate'
 alias de='deactivate'
 
+# get data
+alias get-data='scp james@minhome.app:~/.backups/cla_daily.sql ~'
+
 # quick launch tmux
 # alias tmux="TERM=screen-256color-bce tmux"
 alias t='tmux'
