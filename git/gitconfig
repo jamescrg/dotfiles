@@ -39,3 +39,6 @@
     undo-commit = reset --soft HEAD^
     set-upstream = !git branch --set-upstream-to=origin/`git symbolic-ref --short HEAD`
 
+[user]
+	email = jamespcraig@gmail.com
+	name = James Craig

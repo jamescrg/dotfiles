@@ -13,10 +13,12 @@ alias w='cd ~/w/notes && vim notes.ol.md'
 alias bk='cd ~/w/bk && vim'
 
 # quick access to work on projects
-alias law='cd && cd ~/lawadmin && source ~/.venvs/lawadmin/bin/activate'
+alias law='cd && cd ~/lawadmin && source ~/Dev/lawadmin/venv/bin/activate'
 alias chf='cd && cd ~/chf && source ~/.venvs/chf/bin/activate'
 alias mh='cd && cd ~/mh && source ~/.venvs/mh/bin/activate'
 alias mp='cd && cd ~/mp && source ~/.venvs/mp/bin/activate'
+alias act='source ./venv/bin/activate'
+alias de='deactivate'
 
 # quick launch tmux
 # alias tmux="TERM=screen-256color-bce tmux"
