@@ -1,4 +1,3 @@
-
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
 
@@ -96,15 +95,6 @@ alias l='ls -CF'
 #   sleep 10; alert
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 
-# Alias definitions.
-# You may want to put all your additions into a separate file like
-# ~/.bash_aliases, instead of adding them here directly.
-# See /usr/share/doc/bash-doc/examples in the bash-doc package.
-
-if [ -f ./.bash_aliases ]; then
-    . ./.bash_aliases
-fi
-
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
 # sources /etc/bash.bashrc).
@@ -118,21 +108,26 @@ fi
 
 ## .bin directory on path
 export PATH="~/.bin:$PATH"
-
-## virtualenv directory added to pay
-# export PATH="/home/james/.local/bin/virtualenv:$PATH"
 export PATH="/home/james/.local/bin:$PATH"
-# export PYTHONPATH="/home/james/.local/bin/virtualenv:$PATH"
 
-# Setting ripgrep as the default source for fzf
-alias rg="rg -g '!{**/migrations/*,**/.git/*}' --hidden --follow"
+#=============================================================================
+#=============================================================================
+
+# Use ripgrep as the default source for fzf
+# And exclude git directory, migrations, and venv from scope of search
+alias rg="rg -g '!{**/migrations/*,**/.git/*,venv/*}' --hidden --follow"
 export FZF_DEFAULT_COMMAND='rg --files'
 
-export PATH="$PATH:/opt/nvim-linux64/bin"
+# Alias definitions.
+# You may want to put all your additions into a separate file like
+# ~/.bash_aliases, instead of adding them here directly.
+# See /usr/share/doc/bash-doc/examples in the bash-doc package.
 
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+if [ -f ./.bash_aliases ]; then
+    . ./.bash_aliases
+fi
 
-source ~/.bash_aliases
-source ~/.bashrc_local
+# Local definitions.
+if [ -f ./.bashrc_local ]; then
+    . ./.bashrc_local
+fi

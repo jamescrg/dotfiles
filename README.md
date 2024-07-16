@@ -1,1 +1,1 @@
-configuration for bash, tmux, vim, nvim
+configuration for bash, tmux, and git
