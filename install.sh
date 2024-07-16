@@ -4,6 +4,7 @@ DOTFILES="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 # Bash
 ln -sf $DOTFILES/bash/.bashrc $HOME/.bashrc
+ln -sf $DOTFILES/bash/.bashrc_local $HOME/.bashrc_local
 ln -sf $DOTFILES/bash/.bash_aliases $HOME/.bash_aliases
 
 # Tmux
