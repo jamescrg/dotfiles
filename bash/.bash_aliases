@@ -4,8 +4,10 @@ alias dots="cd ~/.dotfiles && vim ."
 # directory listing, group directories first
 alias ll='clear && ls -alF --group-directories-first'
 
+# clear the screen
+alias c='clear'
+
 # quick launch tmux
-# alias tmux="TERM=screen-256color-bce tmux"
 alias t='tmux'
 
 # quick source bashrc
@@ -18,7 +20,7 @@ alias gs='git status'
 alias gb='git branch'
 alias gc='git commit'
 alias go='git checkout'
-alias gl='git log'
+alias gl='git log --oneline'
 
 # web server management
 alias ss='sudo systemctl'
