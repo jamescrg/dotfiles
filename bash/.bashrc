@@ -115,8 +115,11 @@ export PATH="/home/james/.local/bin:$PATH"
 
 # Use ripgrep as the default source for fzf
 # And exclude git directory, migrations, and venv from scope of search
-alias rg="rg -g '!{**/migrations/*,**/.git/*,venv/*,**/__init__.py}' --hidden --follow"
+alias rg="rg -g '!{**/migrations/*,**/.git/*,venv/*,**/__init__.py}'--hidden --follow"
 export FZF_DEFAULT_COMMAND='rg --files'
+
+# location of neovim
+export PATH="$PATH:/opt/nvim-linux64/bin"
 
 # Alias definitions.
 # You may want to put all your additions into a separate file like
@@ -131,3 +134,5 @@ fi
 if [ -f ./.bashrc_local ]; then
     . ./.bashrc_local
 fi
+
+

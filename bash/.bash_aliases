@@ -1,3 +1,6 @@
+
+shopt -s expand_aliases
+
 # some aliases
 alias dots="cd ~/.dotfiles && vim ."
 
@@ -20,7 +23,9 @@ alias gs='git status'
 alias gb='git branch'
 alias gc='git commit'
 alias go='git checkout'
+__git_complete go _git_checkout
 alias gl='git log --oneline'
+alias lg='lazygit'
 
 # web server management
 alias ss='sudo systemctl'
