@@ -1,8 +1,7 @@
 
-shopt -s expand_aliases
 
-# some aliases
-alias dots="cd ~/.dotfiles && vim ."
+# use neovim
+alias vim="nvim"
 
 # directory listing, group directories first
 alias ll='clear && ls -alF --group-directories-first'
@@ -28,8 +27,9 @@ alias lg='lazygit'
 alias ss='sudo systemctl'
 alias ssr='sudo systemctl restart'
 alias sss='sudo systemctl status'
-alias ng='cd /etc/nginx && vim'
-alias sys='cd /etc/systemd/system && vim'
+alias ng='cd /etc/nginx && nvim'
+alias sys='cd /etc/systemd/system && nvim'
+alias sys='cd /.config/nvim && nvim'
 
 # virtual env access
 alias act='source ./venv/bin/activate'

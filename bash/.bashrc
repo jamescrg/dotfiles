@@ -120,6 +120,7 @@ export FZF_DEFAULT_COMMAND='rg --files'
 
 # location of neovim
 export PATH="$PATH:/opt/nvim-linux64/bin"
+export PATH="$PATH:~/.bin"
 
 # Alias definitions.
 # You may want to put all your additions into a separate file like
@@ -136,3 +137,4 @@ if [ -f ./.bashrc_local ]; then
 fi
 
 
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
