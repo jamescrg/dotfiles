@@ -1,19 +1,18 @@
 
-
 # use neovim
-alias vim="nvim"
+# alias vim="nvim"
 
 # directory listing, group directories first
 alias ll='clear && ls -alF --group-directories-first'
-
-# clear the screen
-alias c='clear'
 
 # quick launch tmux
 alias t='tmux'
 
 # quick source bashrc
 alias so='source ~/.bashrc'
+
+# get to dotfiles
+alias dots='cd ~/.dotfiles'
 
 # git aliases
 alias ga='git add'
@@ -34,9 +33,6 @@ alias sys='cd /.config/nvim && nvim'
 # virtual env access
 alias act='source ./venv/bin/activate'
 alias de='deactivate'
-
-# get data
-alias get-data='scp james@minhome.app:~/.backups/cla_daily.sql ~'
 
 # run python
 alias py='python3'

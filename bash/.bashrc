@@ -136,5 +136,4 @@ if [ -f ./.bashrc_local ]; then
     . ./.bashrc_local
 fi
 
-
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
